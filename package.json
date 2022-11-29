@@ -8,18 +8,15 @@
   "main": "src/loader.js",
   "scripts": {
     "start": "node src/loader.js",
-    "dev": "nodemon",
-    "production": "pm2 start src/loader.js --name todo-app"
+    "dev": "nodemon"
   },
   "keywords": [],
-  "author": "",
+  "author": "Marcelo Luiz",
   "license": "ISC",
   "dependencies": {
     "express": "4.17.1",
     "mongoose": "^6.7.4",
-    "node-restful": "0.2.6",
-    "pm2": "4.5.5",
-    "radium": "^0.26.2"
+    "node-restful": "^0.2.6"
   },
   "devDependencies": {
     "nodemon": "2.0.7"
