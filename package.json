@@ -1,24 +1,19 @@
 {
-  "name": "backend-app",
+  "name": "backend-todoapp",
   "version": "1.0.0",
-  "engines": {
-    "node": "16.x"
-  },
-  "description": "back end todo app",
-  "main": "src/loader.js",
+  "description": "",
+  "main": "app.js",
   "scripts": {
-    "start": "node src/loader.js",
-    "dev": "nodemon"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "keywords": [],
-  "author": "Marcelo Luiz",
+  "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "4.17.1",
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
     "mongoose": "^6.7.4",
-    "node-restful": "^0.2.6"
-  },
-  "devDependencies": {
-    "nodemon": "2.0.7"
+    "nodemon": "^2.0.20"
   }
 }
