@@ -1,11 +1,15 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 const app = express()
 const port = process.env.PORT || 3003
 
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(cors())
+
 
 const todos = require('./routes/todos');
 
