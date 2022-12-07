@@ -1,4 +1,4 @@
-const Todo = require('../models/todoModel')
+const Todo = require('../models/TodoModel')
 
 exports.get = (req, res) => {
   Todo.find({}, (err, todos) => {
@@ -10,10 +10,13 @@ exports.get = (req, res) => {
 }
 
 exports.post = (req, res) => {
+
+  const { title, description, done } = req.body
+
   const newTodo = new Todo({
-    title: req.body.title,
-    description: req.body.description,
-    done: req.body.done,
+    title,
+    description,
+    done,
   })
   newTodo.save((error, todo) => {
     if (error) {

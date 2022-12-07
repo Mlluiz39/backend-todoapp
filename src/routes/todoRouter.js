@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const indexBase = require('./index')
-const controller = require('../controllers/todoController')
+const todoController = require('../controllers/todoController')
 
 router.get('/',indexBase)
-router.get('/show', controller.get)
-router.post('/new', controller.post)
-router.put('/:id', controller.put)
-router.delete('/:id', controller.delete)
+router.get('/show', todoController.get)
+router.post('/new', todoController.post)
+router.put('/:id', todoController.put)
+router.delete('/:id', todoController.delete)
 module.exports = router
