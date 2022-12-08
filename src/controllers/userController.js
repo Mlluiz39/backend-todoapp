@@ -181,6 +181,4 @@ exports.getById = async (req, res) => {
   } catch (error) {
     res.status(404).json({ message: 'Usuário não encontrado' })
   }
-
-  checkToken()
 }
