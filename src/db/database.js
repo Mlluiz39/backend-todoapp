@@ -6,7 +6,7 @@ const DB_PASS = process.env.DB_PASS
 const DB_NAME = process.env.DB_NAME
 
 module.exports = mongoose
-  .connect(`mongodb://${DB_USER}:${DB_PASS}@132.226.242.241:27017/${DB_NAME}`, {
+  .connect(`mongodb://144.22.225.20:27017/mongo`, {
     useNewUrlParser: true,
   })
   .then(result => {

@@ -8,8 +8,8 @@ const jwt = require('jsonwebtoken')
 const cors = require('cors')
 
 //Rotas
-app.use(bodyParser.json())
 app.use(cors())
+app.use(bodyParser.json())
 const index = require('./routes/index')
 const todoRoute = require('./routes/todoRouter')
 const userRoute = require('./routes/userRouter')
