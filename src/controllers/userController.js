@@ -47,9 +47,7 @@ exports.post = async (req, res) => {
     password: Yup.string()
       .required('A senha é obrigatória')
       .min(6, 'A senha deve ter no mínimo 6 caracteres'),
-    confirmPassword: Yup.string()
-      .required('A senha é obrigatória')
-      .min(6, 'A senha deve ter no mínimo 6 caracteres'),
+    
   })
 
   try {
