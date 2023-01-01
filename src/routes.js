@@ -12,7 +12,7 @@ routes.get('/users', UserController.index)
 routes.post('/tasks', TaskController.store)
 routes.get('/tasks', TaskController.index)
 routes.get('/tasks/:id', TaskController.show)
-routes.update('/tasks', TaskController.update)
-routes.delete('/tasks', TaskController.delete)
+routes.put('/tasks/:id', TaskController.update)
+routes.delete('/tasks/:id', TaskController.delete)
 
 export default routes
