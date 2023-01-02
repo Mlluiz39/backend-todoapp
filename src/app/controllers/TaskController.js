@@ -15,6 +15,8 @@ class TaskController {
   async index(req, res) {
     const todos = await Todo.find()
 
+    console.log(req.userId)
+
     return res.status(200).json(todos)
   }
 
