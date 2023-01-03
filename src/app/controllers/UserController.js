@@ -15,13 +15,13 @@ class UserController {
 
     const password_hash = await bcrypt.hash(password, salt)
 
-    const user = await User.create({
-      name,
-      email,
-      password: password_hash,
-    })
-
     try {
+      const user = await User.create({
+        name,
+        email,
+        password: password_hash,
+      })
+
       await user.save()
 
       return res.status(201).json({ msg: 'User created successfully' })
@@ -34,7 +34,7 @@ class UserController {
   async index(req, res) {
     const users = await User.find()
 
-    return res.json(users)
+    return res.status(200).json(users)
   }
 }
 
