@@ -1,6 +1,5 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import dataConfig from '../../config/data'
 
 import User from '../schemas/User'
 
@@ -21,8 +20,8 @@ class SessionController {
       id: user._id,
       name: user.name,
       email: user.email,
-      token: jwt.sign({ id: user._id }, dataConfig.secret, {
-        expiresIn: dataConfig.expiresIn,
+      token: jwt.sign({ id: user._id }, process.env.TOKEN_SECRET, {
+        expiresIn: process.env.EXPIRES_IN,
       }),
     })
   }

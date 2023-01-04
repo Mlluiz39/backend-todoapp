@@ -11,7 +11,7 @@ class TaskController {
       })
 
       if (title === '' || description === '')
-        return res.status(400).json({ error: 'Task creation failed' })
+        return res.status(400).json({ error: 'Not input fails' })
 
       await todo.save()
 

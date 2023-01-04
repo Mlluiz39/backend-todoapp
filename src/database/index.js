@@ -1,4 +1,7 @@
 import mongoose from 'mongoose'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 class Database {
   constructor() {
@@ -8,11 +11,7 @@ class Database {
   init() {
     try {
       this.mongoConnection = mongoose.connect(
-        'mongodb://localhost:27017/todo',
-        {
-          useNewUrlParser: true,
-          useUnifiedTopology: true,
-        }
+        `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@${process.env.MONGO_HOST}`
       )
       console.log('MongoDB connected')
     } catch (error) {
