@@ -1,9 +1,22 @@
+import * as yup from 'yup'
 import bcrypt from 'bcrypt'
 
 import User from '../schemas/User'
 
 class UserController {
   async store(req, res) {
+    const schema = yup.object().shape({
+      name: yup.string().required(),
+      email: yup.string().email().required(),
+      password: yup.string().required().min(6),
+    })
+
+    try {
+      schema.validateSync(req.body, { abortEarly: false })
+    } catch (error) {
+      return res.status(400).json({ error: error.errors })
+    }
+
     const { name, email, password } = req.body
 
     const userExists = await User.findOne({ email })
