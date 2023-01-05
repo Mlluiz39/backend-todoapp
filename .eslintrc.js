@@ -7,7 +7,7 @@ module.exports = {
   plugins: ['prettier'],
   parserOptions: {
     ecmaVersion: 'latest',
-    sourceType: 'module',
+    sourceType: 'commonjs',
   },
   rules: {
     'prettier/prettier': [
