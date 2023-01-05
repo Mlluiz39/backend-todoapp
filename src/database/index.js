@@ -11,7 +11,7 @@ class Database {
   init() {
     try {
       this.mongoConnection = mongoose.connect(
-        `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@${process.env.MONGO_HOST}`
+        `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@${process.env.MONGO_HOST}`
       )
       console.log('MongoDB connected')
     } catch (error) {
