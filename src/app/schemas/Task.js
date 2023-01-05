@@ -1,8 +1,8 @@
-import mongoose, { Schema } from 'mongoose'
+const mongoose = require('mongoose')
 
 const TaskSchema = new mongoose.Schema({
   user: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
   title: {
@@ -27,4 +27,4 @@ const TaskSchema = new mongoose.Schema({
   },
 })
 
-export default mongoose.model('Task', TaskSchema)
+module.exports = mongoose.model('Task', TaskSchema)

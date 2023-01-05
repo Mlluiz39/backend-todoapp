@@ -1,4 +1,4 @@
-import Todo from '../schemas/Task'
+const Todo = require('../schemas/Task')
 
 class TaskController {
   async store(req, res) {
@@ -60,4 +60,4 @@ class TaskController {
   }
 }
 
-export default new TaskController()
+module.exports = new TaskController()

@@ -1,7 +1,7 @@
-import * as yup from 'yup'
-import bcrypt from 'bcrypt'
+const yup = require('yup')
+const bcrypt = require('bcrypt')
 
-import User from '../schemas/User'
+const User = require('../schemas/User')
 
 class UserController {
   async store(req, res) {
@@ -51,4 +51,4 @@ class UserController {
   }
 }
 
-export default new UserController()
+module.exports = new UserController()

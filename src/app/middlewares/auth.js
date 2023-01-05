@@ -1,7 +1,6 @@
-import jwt from 'jsonwebtoken'
-import dataConfig from '../../config/data'
+const jwt = require('jsonwebtoken')
 
-export default (req, res, next) => {
+const authMiddleware = (req, res, next) => {
   const authToken = req.headers.authorization
 
   if (!authToken) return res.status(401).json({ error: 'Token not provided' })
@@ -9,7 +8,7 @@ export default (req, res, next) => {
   const token = authToken.split(' ')[1]
 
   try {
-    jwt.verify(token, dataConfig.secret, function (err, decoded) {
+    jwt.verify(token, process.env.TOKEN_SECRET, function (err, decoded) {
       if (err) {
         throw new Error()
       }
@@ -21,3 +20,5 @@ export default (req, res, next) => {
     return res.status(401).json({ error: 'Invalid token' })
   }
 }
+
+module.exports = authMiddleware

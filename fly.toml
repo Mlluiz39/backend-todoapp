@@ -14,7 +14,7 @@ processes = []
 [[services]]
   http_checks = []
   internal_port = 3000
-  processes = ["app"]
+  processes = ["server"]
   protocol = "tcp"
   script_checks = []
   [services.concurrency]
