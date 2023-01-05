@@ -11,9 +11,9 @@ const routes = new Router()
 routes.post('/register', UserController.store)
 
 routes.post('/login', SessionController.store)
-routes.get('/users', UserController.index)
 
 routes.use(authMiddleware)
+routes.get('/users', UserController.index)
 
 routes.post('/tasks', TaskController.store)
 routes.get('/tasks', TaskController.index)
