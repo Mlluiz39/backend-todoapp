@@ -3,8 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/server.js",
-  
- 
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon",
@@ -23,7 +21,8 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.0.0",
     "nodemon": "^2.0.20",
-    "prettier": "^2.8.1"
+    "prettier": "^2.8.1",
+    "sequelize-cli": "^6.5.2"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -31,7 +30,10 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
-    "mongoose": "^6.8.2",
+    "pg": "^8.8.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.28.0",
+    "uuid": "^9.0.0",
     "yup": "^0.32.11"
   },
   "engines": {

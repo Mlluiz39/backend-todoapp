@@ -1,5 +1,11 @@
-const mongoose = require('mongoose')
 const dotenv = require('dotenv')
+const { Sequelize } = require('sequelize')
+
+const User = require('../app/models/User')
+
+const configDatabase = require('../config/database')
+
+const models = [User]
 
 dotenv.config()
 
@@ -9,18 +15,8 @@ class Database {
   }
 
   init() {
-    try {
-      this.mongoConnection = mongoose.connect(
-        `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@${process.env.MONGO_HOST}`
-      )
-      console.log('MongoDB connected')
-    } catch (error) {
-      console.log('Error connecting to MongoDB')
-    }
-  }
-
-  mongo() {
-    return this.mongoConnection
+    this.connection = new Sequelize(configDatabase)
+    models.map((model) => model.init(this.connection))
   }
 }
 

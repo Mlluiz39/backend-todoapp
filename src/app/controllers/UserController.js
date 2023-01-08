@@ -1,67 +1,22 @@
-const yup = require('yup')
-const bcrypt = require('bcrypt')
+const { v4 } = require('uuid')
 
-const User = require('../schemas/User')
+const User = require('../models/User')
 
 class UserController {
   async store(req, res) {
-    const schema = yup.object().shape({
-      name: yup.string().required(),
-      email: yup.string().email().required(),
-      password: yup.string().required().min(6),
-    })
+    const { name, email, password_hash } = req.body
 
-    try {
-      schema.validateSync(req.body, { abortEarly: false })
-    } catch (error) {
-      return res.status(400).json({ error: error.errors })
-    }
+    const user = await User.create({ id: v4(), name, email, password_hash })
 
-    const { name, email, password } = req.body
-
-    const userExists = await User.findOne({ email })
-
-    if (userExists)
-      return res.status(400).json({ error: 'User already exists' })
-
-    const salt = await bcrypt.genSalt(10)
-
-    const password_hash = await bcrypt.hash(password, salt)
-
-    const { tasks } = req.body
-
-    try {
-      const user = await User.create({
-        name,
-        email,
-        password: password_hash,
-      })
-
-      // eslint-disable-next-line array-callback-return
-      await Promise.all(
-        tasks.map(async (task) => {
-          // eslint-disable-next-line new-cap, no-undef
-          const userTask = new Task({ ...task, user: user._id })
-
-          await userTask.save()
-
-          user.tasks.push(userTask)
-        })
-      )
-
-      await user.save()
-
-      return res.status(201).json({ msg: 'User created successfully' })
-    } catch (error) {
-      console.log(error)
-      res.status(400).json({ error: 'Registration failed' })
-    }
+    return res.status(201).json({ id: user.id, name, email })
   }
 
   async index(req, res) {
-    const users = await User.find()
+    const users = await User.findAll()
 
-    return res.status(200).json(users)
+    return res
+      .status(200)
+      .json({ id: users.id, name: users.name, email: users.email })
   }
 }
 
