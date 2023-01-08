@@ -28,12 +28,26 @@ class UserController {
 
     const password_hash = await bcrypt.hash(password, salt)
 
+    const { tasks } = req.body
+
     try {
       const user = await User.create({
         name,
         email,
         password: password_hash,
       })
+
+      // eslint-disable-next-line array-callback-return
+      await Promise.all(
+        tasks.map(async (task) => {
+          // eslint-disable-next-line new-cap, no-undef
+          const userTask = new Task({ ...task, user: user._id })
+
+          await userTask.save()
+
+          user.tasks.push(userTask)
+        })
+      )
 
       await user.save()
 
