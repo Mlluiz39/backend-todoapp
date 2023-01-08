@@ -2,10 +2,11 @@ const dotenv = require('dotenv')
 const { Sequelize } = require('sequelize')
 
 const User = require('../app/models/User')
+const Task = require('../app/models/Task')
 
 const configDatabase = require('../config/database')
 
-const models = [User]
+const models = [User, Task]
 
 dotenv.config()
 
