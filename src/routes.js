@@ -3,14 +3,14 @@ const authMiddleware = require('./app/middlewares/auth')
 const { Router } = require('express')
 
 const UserController = require('./app/controllers/UserController')
-// const SessionController = require('./app/controllers/SessionController')
+const SessionController = require('./app/controllers/SessionController')
 const TaskController = require('./app/controllers/TaskController')
 
 const routes = new Router()
 
 routes.post('/users', UserController.store)
 
-// routes.post('/login', SessionController.store)
+routes.post('/sessions', SessionController.store)
 
 routes.use(authMiddleware)
 routes.get('/users', UserController.index)
