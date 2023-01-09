@@ -1,5 +1,6 @@
 const User = require('../models/User')
 const { object, string } = require('yup')
+const jwt = require('jsonwebtoken')
 
 class SessionController {
   async store(req, res) {
@@ -24,9 +25,14 @@ class SessionController {
     if (!(await user.checkPassword(password))) {
       return res.status(401).json({ error: 'Password does not match' })
     }
-    return res
-      .status(200)
-      .json({ id: user.id, name: user.name, email: user.email })
+    return res.status(200).json({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      token: jwt.sign({ id: user.id }, process.env.TOKEN_SECRET, {
+        expiresIn: process.env.EXPIRES_IN,
+      }),
+    })
   }
 }
 
