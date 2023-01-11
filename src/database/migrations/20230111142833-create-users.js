@@ -6,24 +6,13 @@ module.exports = {
     await queryInterface.createTable('users', {
       id: {
         type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
-        allowNull: false,
         primaryKey: true,
+        defaultValue: Sequelize.UUID,
       },
-      task_id: {
-        type: Sequelize.UUID,
-        allowNull: true,
-        references: {
-          model: 'tasks',
-          key: 'id',
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-      },
-
       name: {
         type: Sequelize.STRING,
         allowNull: false,
+        required: true,
       },
       email: {
         type: Sequelize.STRING,
@@ -45,7 +34,7 @@ module.exports = {
     })
   },
 
-  async down(queryInterface) {
+  async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('users')
   },
 }

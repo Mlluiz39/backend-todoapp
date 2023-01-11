@@ -6,35 +6,23 @@ module.exports = {
     await queryInterface.createTable('tasks', {
       id: {
         type: Sequelize.UUID,
-        allowNull: false,
-        defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
-      },
-
-      task: {
-        type: Sequelize.UUID,
-        primaryKey: true,
-        allowNull: false,
-        defaultValue: Sequelize.UUIDV4,
-      },
-      user_id: {
-        type: Sequelize.UUID,
-        allowNull: true,
-        references: {
-          model: 'users',
-          key: 'id',
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+        defaultValue: Sequelize.UUID,
       },
       title: {
         type: Sequelize.STRING,
         allowNull: false,
+        required: true,
       },
       description: {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      done: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

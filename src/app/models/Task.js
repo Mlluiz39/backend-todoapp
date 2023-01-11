@@ -9,18 +9,39 @@ class Task extends Model {
           primaryKey: true,
           defaultValue: DataTypes.UUIDV4,
         },
-        title: DataTypes.STRING,
-        description: DataTypes.STRING,
+        title: {
+          type: DataTypes.STRING,
+          allowNull: false,
+          required: true,
+        },
+        description: {
+          type: DataTypes.STRING,
+          allowNull: false,
+          required: true,
+        },
+        done: {
+          type: DataTypes.BOOLEAN,
+          defaultValue: false,
+        },
+        user_id: {
+          type: DataTypes.UUIDV4,
+          allowNull: true,
+        },
       },
+
       {
         sequelize,
       }
     )
+
     return this
   }
 
   static associate(models) {
-    this.belongsTo(models.User, { foreignKey: 'user_id', as: 'user' })
+    this.belongsTo(models.User, {
+      foreignKey: 'user_id',
+      onDelete: 'CASCADE',
+    })
   }
 }
 
