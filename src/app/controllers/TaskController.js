@@ -12,7 +12,7 @@ class TaskController {
   async index(req, res) {
     const tasks = await Task.findAll()
 
-    return res.json(tasks)
+    return res.status(200).json(tasks)
   }
 
   async show(req, res) {
