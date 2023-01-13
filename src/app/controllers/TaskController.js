@@ -1,4 +1,5 @@
 const Task = require('../models/Task')
+const User = require('../models/User')
 
 class TaskController {
   async store(req, res) {
@@ -10,9 +11,16 @@ class TaskController {
   }
 
   async index(req, res) {
-    const tasks = await Task.findAll()
+    const task = await Task.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['name', 'email', 'id'],
+        },
+      ],
+    })
 
-    return res.status(200).json(tasks)
+    return res.json(task)
   }
 
   async show(req, res) {

@@ -14,6 +14,8 @@ routes.post('/sessions', SessionController.store)
 
 routes.use(authMiddleware)
 
+routes.get('/users', UserController.index)
+
 routes.post('/tasks', TaskController.store)
 routes.get('/tasks', TaskController.index)
 routes.get('/tasks/:id', TaskController.show)
