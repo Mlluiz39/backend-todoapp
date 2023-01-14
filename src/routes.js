@@ -20,7 +20,7 @@ routes.get('/users/:id', UserController.index)
 routes.post('/users/:user_id/tasks', TaskController.store)
 routes.get('/users/:user_id/tasks', TaskController.index)
 routes.get('/tasks', TaskController.show)
-routes.put('/tasks/:id', TaskController.update)
-routes.delete('/tasks/:id', TaskController.delete)
+routes.put('/users/:user_id/tasks', TaskController.update)
+routes.delete('/users/:user_id/tasks', TaskController.delete)
 
 module.exports = routes
