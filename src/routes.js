@@ -18,8 +18,8 @@ routes.get('/users', UserController.show)
 routes.get('/users/:id', UserController.index)
 
 routes.post('/users/:user_id/tasks', TaskController.store)
-routes.get('/users/tasks', TaskController.index)
-routes.get('/users/tasks/', TaskController.show)
+routes.get('/users/:user_id/tasks', TaskController.index)
+routes.get('/tasks', TaskController.show)
 routes.put('/tasks/:id', TaskController.update)
 routes.delete('/tasks/:id', TaskController.delete)
 
