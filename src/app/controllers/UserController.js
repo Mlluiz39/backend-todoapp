@@ -40,7 +40,19 @@ class UserController {
   }
 
   async index(req, res) {
-    const users = await User.findAll()
+    const { user_id } = req.params
+
+    const user = await User.findByPk(user_id, {
+      include: { association: 'tasks' },
+    })
+
+    return res.status(200).json(user)
+  }
+
+  async show(req, res) {
+    const users = await User.findAll({
+      include: { association: 'tasks' },
+    })
 
     return res.status(200).json(users)
   }
