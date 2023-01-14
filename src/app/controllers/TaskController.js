@@ -3,7 +3,14 @@ const User = require('../models/User')
 
 class TaskController {
   async store(req, res) {
-    const { title, description, user_id } = req.body
+    const { user_id } = req.params
+    const { title, description } = req.body
+
+    const user = await User.findByPk(user_id)
+
+    if (!user) {
+      return res.status(400).json({ error: 'User not found' })
+    }
 
     const task = await Task.create({ title, description, user_id })
 
