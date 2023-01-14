@@ -39,19 +39,28 @@ class TaskController {
     const { user_id } = req.params
     const { title, description } = req.body
 
-    const task = await Task.findByPk(user_id)
+    const user = await User.findByPk(user_id, {
+      include: { association: 'tasks' },
+    })
 
-    await task.update({ title, description })
+    await user.update({ title, description })
 
-    return res.json(task)
+    return res.json(user)
   }
 
   async delete(req, res) {
     const { user_id } = req.params
+    const { id } = req.body
 
-    const task = await Task.findByPk(user_id)
+    const user = await User.findByPk(user_id)
 
-    await task.destroy()
+    if (!user) {
+      return res.status(400).json({ error: 'User not found' })
+    }
+
+    const task = await Task.findByPk(id)
+
+    await user.destroy(task)
 
     return res.send()
   }
