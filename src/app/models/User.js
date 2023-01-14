@@ -34,7 +34,6 @@ class User extends Model {
     this.hasMany(models.Task, {
       foreignKey: 'user_id',
       as: 'tasks',
-      onDelete: 'CASCADE',
     })
   }
 }
