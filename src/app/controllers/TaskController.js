@@ -18,31 +18,28 @@ class TaskController {
   }
 
   async index(req, res) {
-    const task = await Task.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ['name', 'email', 'id'],
-        },
-      ],
+    const { user_id } = req.params
+
+    const user = await User.findByPk(user_id, {
+      include: { association: 'tasks' },
     })
 
-    return res.json(task)
+    return res.status(200).json(user)
   }
 
   async show(req, res) {
-    const { id } = req.params
+    const users = await User.findAll({
+      include: { association: 'tasks' },
+    })
 
-    const task = await Task.findByPk(id)
-
-    return res.json(task)
+    return res.status(200).json(users)
   }
 
   async update(req, res) {
-    const { id } = req.params
+    const { user_id } = req.params
     const { title, description } = req.body
 
-    const task = await Task.findByPk(id)
+    const task = await Task.findByPk(user_id)
 
     await task.update({ title, description })
 
@@ -50,9 +47,9 @@ class TaskController {
   }
 
   async delete(req, res) {
-    const { id } = req.params
+    const { user_id } = req.params
 
-    const task = await Task.findByPk(id)
+    const task = await Task.findByPk(user_id)
 
     await task.destroy()
 
