@@ -36,16 +36,14 @@ class TaskController {
   }
 
   async update(req, res) {
-    const { user_id } = req.params
-    const { title, description } = req.body
+    const { id } = req.params
+    const { done } = req.body
 
-    const user = await User.findByPk(user_id, {
-      include: { association: 'tasks' },
-    })
+    const task = await Task.findByPk(id)
 
-    await user.update({ title, description })
+    await task.update({ done })
 
-    return res.json(user)
+    return res.json(task)
   }
 
   async delete(req, res) {
