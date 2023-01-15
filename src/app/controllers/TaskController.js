@@ -49,20 +49,17 @@ class TaskController {
   }
 
   async delete(req, res) {
-    const { user_id } = req.params
-    const { id } = req.body
-
-    const user = await User.findByPk(user_id)
-
-    if (!user) {
-      return res.status(400).json({ error: 'User not found' })
-    }
+    const { id } = req.params
 
     const task = await Task.findByPk(id)
 
-    await user.destroy(task)
+    if (!task) {
+      return res.status(400).json({ error: 'Task not found' })
+    }
 
-    return res.send()
+    await task.destroy()
+
+    return res.status(200).json({ message: 'Task deleted' })
   }
 }
 
