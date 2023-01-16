@@ -37,13 +37,32 @@ class TaskController {
 
   async update(req, res) {
     const { id } = req.params
+    const { title, description } = req.body
+
+    const task = await Task.findByPk(id)
+
+    if (!task) {
+      return res.status(400).json({ error: 'Task not found' })
+    }
+
+    await task.update({ title, description })
+
+    return res.status(200).json(task)
+  }
+
+  async updateStatus(req, res) {
+    const { id } = req.params
     const { done } = req.body
 
     const task = await Task.findByPk(id)
 
+    if (!task) {
+      return res.status(400).json({ error: 'Task not found' })
+    }
+
     await task.update({ done })
 
-    return res.json(task)
+    return res.status(200).json(task)
   }
 
   async delete(req, res) {
