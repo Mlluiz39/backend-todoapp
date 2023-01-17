@@ -15,7 +15,7 @@ class Task extends Model {
           required: true,
         },
         description: {
-          type: DataTypes.STRING,
+          type: DataTypes.TEXT,
           allowNull: false,
           required: true,
         },
