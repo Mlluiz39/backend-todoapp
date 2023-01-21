@@ -1,9 +1,9 @@
 module.exports = {
   dialect: 'postgres',
-  host: '144.22.190.23',
-  username: 'postgres',
-  password: 'Julia2912@',
-  database: 'todotask-postgres',
+  host: process.env.DB_HOST || 'localhost',
+  username: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
   define: {
     timestamps: true,
     underscored: true,
